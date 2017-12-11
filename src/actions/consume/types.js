@@ -1,0 +1,3 @@
+export const ADD = 'ADD_CONSUME'
+export const REMOVE = 'REMOVE_CONSUME'
+export const UPDATE_ATTRIBUTE = 'UPDATE_ATTRIBUTE_CONSUME'

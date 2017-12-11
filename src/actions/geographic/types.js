@@ -1,0 +1,1 @@
+export const SELECTED = 'SELECTED_GEOGRAPHIC'
