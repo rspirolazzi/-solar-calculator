@@ -1,0 +1,3 @@
+export const ADD = 'ADD_INVERTER'
+export const REMOVE = 'REMOVE_INVERTER'
+export const UPDATE_ATTRIBUTE = 'UPDATE_ATTRIBUTE_INVERTER'

@@ -23,7 +23,10 @@ const headers = [
     ['Dic'],
     ['Promedio'],
 ]
-const GeoTable = ({result=[], selectedIndex, handleOnSelectRow})=>{
+const GeoTable = ({result=[], isLoading, selectedIndex, handleOnSelectRow})=>{
+    if(isLoading === true){
+        return <span>Buscando en Nasa...</span>
+    }
     if(result.length === 0){
         return null
     }

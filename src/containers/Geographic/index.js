@@ -28,7 +28,7 @@ class Geographic extends Component {
         </LayoutCard>
     }
 }
-const mapStateToProps = (state, props)=> {
+const mapStateToProps = (state)=> {
     const {geographic} = state
     return {
         geographic
