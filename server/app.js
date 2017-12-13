@@ -1,5 +1,5 @@
 const restify = require('restify'), config = require('config.json')(__dirname + '/config.json'),
-    corsMiddleware = require('restify-cors-middleware'), serveStatic = require('serve-static-restify')
+    corsMiddleware = require('restify-cors-middleware'), serveStatic = require('serve-static-restify'), fs=require('fs')
 module.exports = (callback)=> {
     const nasa = require('./Nasa/routing'), geocoder = require('./Geocoder/routing')
 
@@ -16,12 +16,15 @@ module.exports = (callback)=> {
     })
     server.pre(cors.preflight)
     server.use(cors.actual)
-
-    //server.pre(serveStatic('public/ftp', {'index': ['default.html', 'default.htm']}))
-
-
     nasa(server)
     geocoder(server)
+
+    server.get(
+        /\/(.*)?.*/,
+        restify.plugins.serveStatic({
+            directory: './build',
+        })
+    )
 
     server.listen(config.port, callback(server))
     return server

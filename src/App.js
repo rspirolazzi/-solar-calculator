@@ -10,6 +10,9 @@ import {deepOrange500} from 'material-ui/styles/colors'
 import AppBar from 'material-ui/AppBar';
 import Layout from './containers/Layout'
 import {PersistGate} from 'redux-persist/es/integration/react'
+import Loading from './components/Loading'
+import NewIcon  from 'material-ui/svg-icons/content/add'
+import CreateNewButton from 'material-ui/FloatingActionButton'
 // Font
 import 'typeface-roboto'
 import styles from './styles'
@@ -18,34 +21,33 @@ import styles from './styles'
 const muiTheme = getMuiTheme({
     palette: {
         accent1Color: deepOrange500,
-        //textColor: cyan500,
     }
 })
 injectTapEventPlugin()
+const {store, persistor} = configureStore()
+const onBeforeLift =()=>{
+    console.log('onBeforeLift')
+}
+const clearData = ()=>{
+    console.log('ClearData')
+    persistor.purge()
+}
 
-//const store = configureStore(initState)
-const store = configureStore()
-//const {persistor, store} = configurePersistorStore()
 class App extends Component {
     render() {
-        /*return <Provider store={store}>
-         <PersistGate persistor={persistor}>
-         <MuiThemeProvider muiTheme={muiTheme}>
-         <div style={styles.bg}>
-         <AppBar title="Calculo de sistema Fotovoltaico"/>
-         <Layout styles={styles}/>
-         </div>
-         </MuiThemeProvider>
-         </PersistGate>
-         </Provider>*/
-        return <Provider store={store}>
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={styles.bg}>
-                    <AppBar title="Calculo de sistema Fotovoltaico"/>
-                    <Layout styles={styles}/>
-                </div>
-            </MuiThemeProvider>
-        </Provider>
+        return <MuiThemeProvider muiTheme={muiTheme}>
+            <Provider store={store}>
+                <PersistGate persistor={persistor} loading={<Loading show={true} />} onBeforeLift={onBeforeLift}>
+                    <div style={styles.bg}>
+                        <AppBar title="Calculo de sistema Fotovoltaico"/>
+                        <Layout styles={styles}/>
+                        <CreateNewButton onClick={clearData}>
+                            <NewIcon/>
+                        </CreateNewButton>
+                    </div>
+                </PersistGate>
+            </Provider>
+        </MuiThemeProvider>
     }
 }
 
