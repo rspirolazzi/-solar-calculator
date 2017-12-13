@@ -17,6 +17,9 @@ const initState = {
     isComplete:false,
     items: [],
 }
+const isComplete=(newState)=>{
+    newState.isComplete = (newState.items && newState.items.length>0)
+}
 const solarPanel = (state = initState, {type, payload})=> {
     let newState={}, items=[], item={}
     switch (type) {
@@ -28,12 +31,14 @@ const solarPanel = (state = initState, {type, payload})=> {
             item.w_nominal = calculateWNominalFromSolarPanel(item)
             items.push(item)
             newState.items = items
+            isComplete(newState)
             return newState
 
         case REMOVE:
             newState = Object.assign({}, state, {last_update: Date.now()})
             items = newState.items.filter(item=>item.id !== payload.id)
             newState.items = items
+            isComplete(newState)
             return newState
         default:
             return state

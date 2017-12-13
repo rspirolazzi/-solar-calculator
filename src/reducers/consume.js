@@ -64,6 +64,9 @@ const calculateEnergy = (newState)=> {
         total_extra_power_to_generate
     })
 }
+const isComplete=(newState)=>{
+    newState.isComplete = (newState.items && newState.items.length>0)
+}
 const geographic = (state = initState, {type, payload})=> {
     let newState = {}
     switch (type) {
@@ -72,16 +75,19 @@ const geographic = (state = initState, {type, payload})=> {
             newState.items.push({...payload.item, id: payload.id})
             calculateTotals(newState)
             calculateEnergy(newState)
+            isComplete(newState)
             return newState
         case REMOVE:
             newState = _.assign({}, state)
             newState.items = newState.items.filter(item=>item.id !== payload.id)
             calculateTotals(newState)
             calculateEnergy(newState)
+            isComplete(newState)
             return newState
         case UPDATE_ATTRIBUTE:
             newState = _.merge({}, state, {energy: payload})
             calculateEnergy(newState)
+            isComplete(newState)
             return newState
         default:
             return state

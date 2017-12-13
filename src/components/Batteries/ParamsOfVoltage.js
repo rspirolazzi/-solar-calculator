@@ -12,7 +12,7 @@ import Subheader from 'material-ui/Subheader'
 
 import {configVoltageTable} from '../../utils/collection'
 
-const ParamsOfVoltage = ({suggest, selected, onClickSelect})=>{
+const ParamsOfVoltage = ({selected, onClickSelect})=>{
     const helperToSelectRow=(row)=>{
         if(row && row.length>0){
             onClickSelect(configVoltageTable[row.shift()].v)
@@ -37,7 +37,7 @@ const ParamsOfVoltage = ({suggest, selected, onClickSelect})=>{
             </TableBody>
         </Table>
         <List>
-            <ListItem>Voltaje seleccionado para banco de baterías <b>{selected ? selected : suggest} V</b></ListItem>
+            <ListItem>Voltaje seleccionado para banco de baterías <b>{selected} V</b></ListItem>
         </List>
     </div>
 }

@@ -21,14 +21,15 @@ class Batteries extends Component {
         const {voltage, totalBankBattery,totalOfBattery}= battery
         return <LayoutCard show={isComplete} title="DIMENSIONAMIENTO DEL ARREGLO DE PANELES Y BANCO DE BATERÍAS">
             <PowerOfSolarPanels solarPanels={items}/>
-            <ParamsOfVoltage suggest={suggest} selected={voltage} onClickSelect={this.props.selectVoltage}/>
+            <ParamsOfVoltage selected={voltage} onClickSelect={this.props.selectVoltage}/>
+            {voltage != ''?<div>
             <SolarPanelsDistribution {...battery}/>
             <ListOfBatteries {...battery} totalBankBattery={totalBankBattery}
                                           totalOfBattery={totalOfBattery}
                                           handleOnChange={this.props.updateAttr}
                                           handleOnChangeBattery={this.props.updateAttrBattery}
                                           itemsBattery={[...battery.items]}
-            />
+            /></div>:''}
         </LayoutCard>
     }
 }

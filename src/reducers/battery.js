@@ -47,6 +47,9 @@ const calculateTotalOfBattery= (newState, {solarPanels, power_total, power_facto
 
     return {qty,capacity,totalPrice, qtyInSeries, qtyInParallel, maxPowerOfChargeBankBatteries, maxPowerOfUnChargeBankBatteries, maxPowerOfChargeBankBatteriesC20,maxPowerOfUnChargeBankBatteriesC5}
 }
+const isComplete=(newState)=>{
+    newState.isComplete = newState.voltage != ''
+}
 const battery = (state = initState, {type, payload})=> {
     let newState
     switch (type) {
@@ -54,19 +57,21 @@ const battery = (state = initState, {type, payload})=> {
             newState = _.assign({}, state, {voltage: payload.voltage})
             newState.series =  qtyPanelsInSeries(payload.solarPanels, newState.voltage)
             newState.parallel =  qtyPanelsInParallel(payload.solarPanels, newState.series)
-            //newState.totalBankBattery = bankOfBatteryCapacity(newState)
+            newState.totalBankBattery = bankOfBatteryCapacity(payload.totalConsumeOfYear, newState)
+            newState.totalOfBattery=calculateTotalOfBattery(newState, payload)
+            isComplete(newState)
             return newState
         case UPDATE_ATTR:
             newState = _.assign({}, state, payload)
             newState.totalBankBattery = bankOfBatteryCapacity(payload.totalConsumeOfYear, newState)
+            isComplete(newState)
             return newState
         case UPDATE_ATTR_BATTERY:
             newState = _.assign({}, state, payload)
             _.assign(newState.items[0], payload)
-            //qtyOfBatteries
-            
             newState.totalOfBattery=calculateTotalOfBattery(newState, payload)
             delete newState.solarPanels
+            isComplete(newState)
             return newState
         default:
             return state
