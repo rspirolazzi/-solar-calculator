@@ -15,7 +15,8 @@ import {
 class TotalCost extends Component {
     render() {
         const {inverter, solarPanel, battery} = this.props
-        return <LayoutCard title="COSTO DE INVERSIÓN EN EQUIPOS">
+        const {isComplete} = inverter
+        return <LayoutCard show={isComplete} title="COSTO DE INVERSIÓN EN EQUIPOS">
             <Table>
                 <TableHeader>
                     <TableRow>
