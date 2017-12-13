@@ -9,6 +9,7 @@ const initBattery={
     price:550.85,//USD
 }
 const initState = {
+    isComplete:false,
     items: [initBattery],
     voltage: '',
     series:0,

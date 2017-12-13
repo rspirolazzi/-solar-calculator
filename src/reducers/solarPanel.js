@@ -14,6 +14,7 @@ const initSolarPanel = {
     last_update: null
 }
 const initState = {
+    isComplete:false,
     items: [],
 }
 const solarPanel = (state = initState, {type, payload})=> {

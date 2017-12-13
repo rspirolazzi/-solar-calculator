@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import {ADD, REMOVE, UPDATE_ATTRIBUTE} from '../actions/inverter/types'
 const initState = {
+    isComplete:false,
     items: [],
     outputPower:0,
     inputVoltage:0,

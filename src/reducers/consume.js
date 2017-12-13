@@ -18,6 +18,7 @@ const initConsume = {
     totalSummerWhDay: 0,
 }
 const initState = {
+    isComplete:false,
     items: [],
     totals: {
         power: 0,

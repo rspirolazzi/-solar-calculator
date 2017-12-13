@@ -13,13 +13,14 @@ import {addConsumeParam, removeConsumeParam} from '../../actions/consume'
 class Consume extends Component {
     render() {
         const {items, totals, power_factor, energy} = this.props.consume
-        return <LayoutCard title="PARAMETROS DE CONSUMO Y ENERGÍA">
-            <InputTable items={items} onClickAdd={(e, data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
-            <AdditionalsTable {...totals}/>
-            <PowerInput value={power_factor}/>
-            <Totals1  {...totals}/>
-            <Energy {...energy} {...totals} onChangeAttr={this.props.handleUpdateAttr}/>
-        </LayoutCard>
+        const {isComplete} = this.props.geographic
+            return <LayoutCard show={isComplete} title="PARAMETROS DE CONSUMO Y ENERGÍA">
+                <InputTable items={items} onClickAdd={(e, data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
+                <AdditionalsTable {...totals}/>
+                <PowerInput value={power_factor}/>
+                <Totals1  {...totals}/>
+                <Energy {...energy} {...totals} onChangeAttr={this.props.handleUpdateAttr}/>
+            </LayoutCard>
     }
 }
 

@@ -14,9 +14,9 @@ class SolarPanel extends Component {
         }
     }
     render() {
-        const {solarPanel} = this.props;
+        const {solarPanel, consume:{isComplete}} = this.props;
         const {items} = solarPanel
-        return <LayoutCard title="PANELES SOLARES SELECCIONADOS PARA LA INSTALACIÓN">
+        return <LayoutCard show={isComplete} title="PANELES SOLARES SELECCIONADOS PARA LA INSTALACIÓN">
             <Subheader>Panel Solar</Subheader>
             <InputTable items={items} onClickAdd={(e,data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
             <Totals items={items}/>
@@ -25,7 +25,8 @@ class SolarPanel extends Component {
 }
 function mapStateToProps(state) {
     return {
-        solarPanel: state.solarPanel
+        solarPanel: state.solarPanel,
+        consume: state.consume,
     }
 }
 

@@ -5,24 +5,12 @@ import configureStore from './configureStore'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles'
 
-import {deepOrange500, cyan500, grey300} from 'material-ui/styles/colors'
+import {deepOrange500} from 'material-ui/styles/colors'
 import AppBar from 'material-ui/AppBar';
 import Layout from './containers/Layout'
 // Font
 import 'typeface-roboto'
-import initState from './initStates'
-
-// Styles
-const styles = {
-    container: {
-        textAlign: 'center',
-        width:'80%',
-        margin:'0 auto',
-    },
-    bg:{
-        backgroundColor:grey300
-    }
-}
+import styles from './styles'
 
 // Theme
 const muiTheme = getMuiTheme({

@@ -22,7 +22,7 @@ class Geographic extends Component {
     }
     render() {
         const {parameter, location} = this.props.geographic
-        return <LayoutCard title="PARAMETROS GEOGRAFICOS Y DE RADIACIÓN SOLAR">
+        return <LayoutCard show={true} title="PARAMETROS GEOGRAFICOS Y DE RADIACIÓN SOLAR">
             <FormLocation handleClick={this.props.findLocation} {...location} handleOnSelectRow={this.handleOnSelectRowLocation}/>
             <Table {...parameter} handleOnSelectRow={this.handleOnSelectRow}/>
         </LayoutCard>

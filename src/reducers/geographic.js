@@ -23,7 +23,7 @@ const initState = {
         selectedIndex:null,
         isLoading:false,
     },
-
+    isComplete:false,
     location:{
         selectedIndex:null,
         latitude:null,
@@ -37,7 +37,7 @@ const geographic = (state = initState, {type, payload})=> {
     switch (type) {
         case SELECTED_PARAMETER:
             const selected = state.parameter.result[payload.index]
-            return _.merge({}, initState, state, {parameter:{selected: selected,selectedIndex: payload.index}})
+            return _.merge({}, initState, state, {isComplete:true,parameter:{selected: selected,selectedIndex: payload.index}})
         case LOADING_PARAMETER:
             return _.assign({}, initState, state, {parameter:{isLoading:payload.isLoading}})
         case FOUND_PARAMETER:
