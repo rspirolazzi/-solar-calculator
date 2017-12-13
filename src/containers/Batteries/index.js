@@ -12,10 +12,7 @@ import {selectVoltage, updateAttr, updateAttrBattery} from '../../actions/batter
 import {suggestVoltage} from '../../utils/formulas'
 
 class Batteries extends Component {
-    constructor(props) {
-        super(props)
-    }
-
+    
     render() {
         const {solarPanel} = this.props
         const {battery} = this.props

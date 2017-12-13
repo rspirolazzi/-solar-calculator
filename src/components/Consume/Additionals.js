@@ -1,13 +1,9 @@
-import React, {Component} from 'react'
-import TextField from 'material-ui/TextField'
+import React from 'react'
 import {
     List,
     ListItem,
 } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
-import Badge from 'material-ui/Badge'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
 
 const AdditionalsTable = ({power_total=0, power_p_total=0})=><List>
     <Subheader>Totales</Subheader>

@@ -29,7 +29,7 @@ const ParamsOfVoltage = ({suggest, selected, onClickSelect})=>{
             </TableHeader>
             <TableBody showRowHover={true}>
                 {configVoltageTable.map(voltage=>
-                    <TableRow key={voltage.key} hoverable={true} selected={selected && voltage.v == selected ||voltage.v == selected}>
+                    <TableRow key={voltage.key} hoverable={true} selected={(selected && voltage.v) === selected || (voltage.v === selected)}>
                         <TableRowColumn>{voltage.label}</TableRowColumn>
                         <TableRowColumn><b>{voltage.v + ' V'}</b></TableRowColumn>
                     </TableRow>

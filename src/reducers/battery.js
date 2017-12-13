@@ -1,7 +1,7 @@
 import {SELECTED, UPDATE_ATTR, UPDATE_ATTR_BATTERY} from '../actions/battery/types'
 import _ from 'lodash'
 import {qtyPanelsInParallel, qtyPanelsInSeries, bankOfBatteryCapacity, qtyOfBatteries,capacityOfBatteries, pricesOfBatteries,qtyBatteriesInSeries, qtyBatteriesInParallel,
-    getMaxPowerOfChargeBankBatteries, getMaxPowerOfUnchargeBankBatteries} from '../utils/formulas'
+    getMaxPowerOfChargeBankBatteries, getMaxPowerOfUnChargeBankBatteries, getMaxPowerOfUnChargeBankBatteriesByVar, MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C5, MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C20} from '../utils/formulas'
 const initBattery={
     capacity:220,//Ah
     voltage:12,//V
@@ -14,18 +14,20 @@ const initState = {
     series:0,
     parallel:0,
     daysOfAutonomy:3,
-    deepMaxUncharge:80,
-    unchargeEfficient:90,
+    deepMaxUnCharge:80,
+    UnChargeEfficient:90,
     inverterEfficient:84,
     totalBankBattery:0,
     totalOfBattery:{
-        qty:0,
+        qty:1,
         capacity:0,//Ah
         totalPrice:0,//USD
         qtyInSeries:0,
         qtyInParallel:0,
         maxPowerOfChargeBankBatteries:0,
-        maxPowerOfUnchargeBankBatteries:0,
+        maxPowerOfUnChargeBankBatteries:0,
+        maxPowerOfChargeBankBatteriesC20:0,
+        maxPowerOfUnChargeBankBatteriesC5:0,
         
     }
 }
@@ -37,10 +39,12 @@ const calculateTotalOfBattery= (newState, {solarPanels, power_total, power_facto
     let capacity = capacityOfBatteries(newState.items[0].capacity,qtyInParallel)
     
     let maxPowerOfChargeBankBatteries = getMaxPowerOfChargeBankBatteries(newState.parallel, solarPanels)
+    let maxPowerOfUnChargeBankBatteries = getMaxPowerOfUnChargeBankBatteries(power_total, power_factor, newState.voltage,newState.inverterEfficient )
     
-    let maxPowerOfUnchargeBankBatteries = getMaxPowerOfUnchargeBankBatteries(power_total, power_factor, newState.voltage,newState.inverterEfficient )
-    
-    return {qty,capacity,totalPrice, qtyInSeries, qtyInParallel, maxPowerOfChargeBankBatteries, maxPowerOfUnchargeBankBatteries}
+    let maxPowerOfUnChargeBankBatteriesC5 = getMaxPowerOfUnChargeBankBatteriesByVar(qtyInParallel, newState.items[0].capacity, MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C5)
+    let maxPowerOfChargeBankBatteriesC20 = getMaxPowerOfUnChargeBankBatteriesByVar(qtyInParallel, newState.items[0].capacity, MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C20)
+
+    return {qty,capacity,totalPrice, qtyInSeries, qtyInParallel, maxPowerOfChargeBankBatteries, maxPowerOfUnChargeBankBatteries, maxPowerOfChargeBankBatteriesC20,maxPowerOfUnChargeBankBatteriesC5}
 }
 const battery = (state = initState, {type, payload})=> {
     let newState
@@ -61,6 +65,7 @@ const battery = (state = initState, {type, payload})=> {
             //qtyOfBatteries
             
             newState.totalOfBattery=calculateTotalOfBattery(newState, payload)
+            delete newState.solarPanels
             return newState
         default:
             return state

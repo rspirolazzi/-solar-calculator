@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {List, ListItem} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 const SolarPanelsDistribution = ({series, parallel})=><div><Subheader>Disposición de paneles</Subheader>

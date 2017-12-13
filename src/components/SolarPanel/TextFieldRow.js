@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import TextFieldRowConsume from '../../components/Consume/TextFieldRow'
 import TextField from 'material-ui/TextField'
 import {

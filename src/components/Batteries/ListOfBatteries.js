@@ -10,8 +10,8 @@ class ListOfBatteries extends Component {
         super(props)
         this.state = {
             daysOfAutonomy: props.daysOfAutonomy,
-            deepMaxUncharge: props.deepMaxUncharge,
-            unchargeEfficient: props.unchargeEfficient,
+            deepMaxUnCharge: props.deepMaxUnCharge,
+            UnChargeEfficient: props.UnChargeEfficient,
             inverterEfficient: props.inverterEfficient,
             items: props.itemsBattery,
         }
@@ -30,12 +30,12 @@ class ListOfBatteries extends Component {
 
     render() {
         const {capacity, voltage, model, price} = this.state.items[0]
-        const {totalOfBattery, qtyInSeries,qtyInParallel,maxPowerOfChargeBankBatteries,maxPowerOfUnchargeBankBatteries} = this.props
+        const {totalOfBattery} = this.props
         return <div>
             <Subheader>Banco de baterías</Subheader>
             <TextField floatingLabelText="Dias de autonomía" hintText="Dias de autonomía" name="daysOfAutonomy" value={this.state.daysOfAutonomy} onChange={this.onChange}/>
-            <TextField floatingLabelText="Profundidad máxima de descarga" hintText="Profundidad máxima de descarga" name="deepMaxUncharge" value={this.state.deepMaxUncharge} onChange={this.onChange}/>
-            <TextField floatingLabelText="Eficiencia de descarga" hintText="Eficiencia de descarga" name="unchargeEfficient" value={this.state.unchargeEfficient} onChange={this.onChange}/>
+            <TextField floatingLabelText="Profundidad máxima de descarga" hintText="Profundidad máxima de descarga" name="deepMaxUnCharge" value={this.state.deepMaxUnCharge} onChange={this.onChange}/>
+            <TextField floatingLabelText="Eficiencia de descarga" hintText="Eficiencia de descarga" name="UnChargeEfficient" value={this.state.UnChargeEfficient} onChange={this.onChange}/>
             <TextField floatingLabelText="Eficiencia del inversor" hintText="Eficiencia del inversor" name="inverterEfficient" value={this.state.inverterEfficient} onChange={this.onChange}/>
             
             <List>
@@ -64,10 +64,10 @@ class ListOfBatteries extends Component {
             <Subheader>Corrientes del banco</Subheader>
             <List>
                 <ListItem>Corriente máxima de carga <b>{totalOfBattery.maxPowerOfChargeBankBatteries} A</b> <b>OK</b></ListItem>
-                <ListItem>Corriente máxima de descarga <b>{totalOfBattery.maxPowerOfUnchargeBankBatteries} A</b> <b>OK</b></ListItem>
+                <ListItem>Corriente máxima de descarga <b>{totalOfBattery.maxPowerOfUnChargeBankBatteries} A</b> <b>OK</b></ListItem>
                 <Divider/>
-                <ListItem>C5 (máxima corriente de descarga) <b>88 A</b></ListItem>
-                <ListItem>C20 (máxima corriente de carga) <b>22 A</b></ListItem>
+                <ListItem>C5 (máxima corriente de descarga) <b>{totalOfBattery.maxPowerOfUnChargeBankBatteriesC5} A</b></ListItem>
+                <ListItem>C20 (máxima corriente de carga) <b>{totalOfBattery.maxPowerOfChargeBankBatteriesC20} A</b></ListItem>
             </List>
         </div>
     }

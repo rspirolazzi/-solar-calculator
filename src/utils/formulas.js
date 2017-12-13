@@ -5,6 +5,9 @@ import {totalPowerSolarPanel, reduceAddToNumber, configVoltageTable} from './col
  Corriente máxima de carga
  */
 const MAX_POWER_OF_CHARGE = 1.25
+export const MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C5 = 5
+export const MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C20 = 20
+const POWER_PICO_OUTPUT_CA=220
 
 export const calculateWNominalFromSolarPanel = (solarPanel)=> {
     let power = _.toNumber(_.get(solarPanel, 'power', 0))
@@ -60,15 +63,15 @@ export const qtyPanelsInParallel = (items=[], series)=> {
  * @param totalConsumeOfYear
  * @param voltage
  * @param daysOfAutonomy
- * @param deepMaxUncharge
- * @param unchargeEfficient
+ * @param deepMaxUnCharge
+ * @param UnChargeEfficient
  * @param inverterEfficient
  * @returns {number}
  */
-export const bankOfBatteryCapacity = (totalConsumeOfYear, {voltage, daysOfAutonomy, deepMaxUncharge, unchargeEfficient, inverterEfficient})=> {
+export const bankOfBatteryCapacity = (totalConsumeOfYear, {voltage, daysOfAutonomy, deepMaxUnCharge, UnChargeEfficient, inverterEfficient})=> {
     let result = 0
-    if(_.toNumber(voltage) && _.toNumber(daysOfAutonomy) && _.toNumber(deepMaxUncharge) && _.toNumber(unchargeEfficient) && _.toNumber(inverterEfficient)){
-        result = ((((_.toNumber(totalConsumeOfYear) * (_.toNumber(daysOfAutonomy) + 1))) / ((_.toNumber(voltage/100) * _.toNumber(deepMaxUncharge/100) * _.toNumber(unchargeEfficient/100) * _.toNumber(inverterEfficient/100))))/100).toFixed(2)
+    if(_.toNumber(voltage) && _.toNumber(daysOfAutonomy) && _.toNumber(deepMaxUnCharge) && _.toNumber(UnChargeEfficient) && _.toNumber(inverterEfficient)){
+        result = ((((_.toNumber(totalConsumeOfYear) * (_.toNumber(daysOfAutonomy) + 1))) / ((_.toNumber(voltage/100) * _.toNumber(deepMaxUnCharge/100) * _.toNumber(UnChargeEfficient/100) * _.toNumber(inverterEfficient/100))))/100).toFixed(2)
     }
     return result
 }
@@ -156,11 +159,93 @@ export const getMaxPowerOfChargeBankBatteries=(qtySolarPanelsInParallel, items)=
  * @param inverterEfficient
  * @returns {number}
  */
-export const getMaxPowerOfUnchargeBankBatteries=(power_total, power_factor, batteryVoltage, inverterEfficient )=>{
+export const getMaxPowerOfUnChargeBankBatteries=(power_total, power_factor, batteryVoltage, inverterEfficient )=>{
     
     let result = 0
     if (_.toNumber(power_total) && _.toNumber(power_factor) && _.toNumber(batteryVoltage) && _.toNumber(inverterEfficient)) {
         result = Math.round((power_total/power_factor)/(batteryVoltage*(inverterEfficient/100)))
+    }
+    return result
+}
+/**
+ * Corrientes del banco - C20 (máxima corriente de carga)
+ * @param qtySolarPanelsInParallel
+ * @param batteryCapacity
+ * @returns {number}
+ */
+export const getMaxPowerOfChargeBankBatteriesC20=(qtySolarPanelsInParallel, batteryCapacity)=>{
+    let result = 0
+    if (_.toNumber(batteryCapacity) && _.toNumber(qtySolarPanelsInParallel)) {
+        result = Math.round((_.toNumber(batteryCapacity)/MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C20)*_.toNumber(qtySolarPanelsInParallel))
+    }
+    return result
+}
+
+
+/**
+ * Corrientes del banco - C5,C20 (máxima corriente de descarga)
+ * @param qtySolarPanelsInParallel
+ * @param batteryCapacity
+ */
+export const getMaxPowerOfUnChargeBankBatteriesC5=(qtySolarPanelsInParallel, batteryCapacity)=>{
+    let result = 0
+    if (_.toNumber(batteryCapacity) && _.toNumber(qtySolarPanelsInParallel)) {
+        result = Math.round((_.toNumber(batteryCapacity)/MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C5)*_.toNumber(qtySolarPanelsInParallel))
+    }
+    return result
+}
+/**
+ * Corrientes del banco - C5,C20 (máxima corriente de descarga)
+ * @param qtySolarPanelsInParallel
+ * @param batteryCapacity
+ */
+export const getMaxPowerOfUnChargeBankBatteriesByVar=(qtySolarPanelsInParallel, batteryCapacity, variable)=>{
+    let result = 0
+    if (_.toNumber(batteryCapacity) && _.toNumber(qtySolarPanelsInParallel)) {
+        result = Math.round((_.toNumber(batteryCapacity)/variable)*_.toNumber(qtySolarPanelsInParallel))
+    }
+    return result
+}
+/**
+ * Regulador de carga - Corriente del regulador
+ * @param qtySolarPanelsInParallel
+ * @param items
+ * @returns {number}
+ */
+export const getPowerOfChargeControllerPanel=(qtySolarPanelsInParallel, items)=>{
+    let result = 0
+    if (_.toNumber(qtySolarPanelsInParallel) && items.length > 0) {
+        //TODO que pasa cuando hay mas de un panel solar con diferente nominal_power?
+        //TODO por ahora agarro el mas alto
+        const solarPanel = _.sortBy(items, ['short_power']);
+        let short_power = solarPanel.shift().short_power
+        result = Math.round(MAX_POWER_OF_CHARGE*qtySolarPanelsInParallel*short_power)
+    }
+    return result
+}
+/**
+ * Inversor de corriente - Potencia requerida en CA
+ * @param power_total
+ * @param power_factor
+ * @returns {number}
+ */
+export const getPowerRequiredInCA=(power_total, power_factor)=>{
+    let result = 0
+    if (_.toNumber(power_total) && _.toNumber(power_factor)) {
+        result = Math.round((_.toNumber(power_total)*MAX_POWER_OF_CHARGE)/_.toNumber(power_factor))
+    }
+    return result
+}
+/**
+ * Inversor de corriente - Corriente pico de salida en CA
+ * @param power_p_total
+ * @param power_factor
+ * @returns {number}
+ */
+export const getPowerPicoOutputCA=(power_p_total, power_factor)=>{
+    let result = 0
+    if (_.toNumber(power_p_total) && _.toNumber(power_factor)) {
+        result = Math.round(_.toNumber(power_p_total)/(POWER_PICO_OUTPUT_CA*_.toNumber(power_factor)))
     }
     return result
 }

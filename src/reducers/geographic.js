@@ -1,4 +1,5 @@
-import {SELECTED} from '../actions/geographic/types'
+import {SELECTED_PARAMETER, LOADING_LOCATION, FOUND_LOCATION, SELECTED_LOCATION, LOADING_PARAMETER, FOUND_PARAMETER} from '../actions/geographic/types'
+import _ from 'lodash'
 const initSelectedParam = {
     angle:0,
     jan:0,
@@ -16,18 +17,38 @@ const initSelectedParam = {
     avg:0,
 }
 const initState = {
-    parameters: [],
-    selected: {},
-    selectedIndex:null
+    parameter:{
+        result: [],
+        selected: {},
+        selectedIndex:null,
+        isLoading:false,
+    },
+
+    location:{
+        selectedIndex:null,
+        latitude:null,
+        longitude:null,
+        formattedAddress:'',
+        result:[],
+        isLoading:false,
+    }
 }
 const geographic = (state = initState, {type, payload})=> {
     switch (type) {
-        case SELECTED:
-            const selected = state.parameters[payload.index]
-            return Object.assign(initState, state, {
-                selected: selected,
-                selectedIndex: payload.index
-            })
+        case SELECTED_PARAMETER:
+            const selected = state.parameter.result[payload.index]
+            return _.merge({}, initState, state, {parameter:{selected: selected,selectedIndex: payload.index}})
+        case LOADING_PARAMETER:
+            return _.assign({}, initState, state, {parameter:{isLoading:payload.isLoading}})
+        case FOUND_PARAMETER:
+            return _.assign({}, initState, state, {parameter:payload})
+
+        case LOADING_LOCATION:
+            return _.assign({}, initState, state, {location:{result:[], latitude:null,longitude:null,isLoading:payload.isLoading}})
+        case FOUND_LOCATION:
+            return _.assign({}, initState, state, {location:payload})
+        case SELECTED_LOCATION:
+            return _.merge({}, initState, state, {location:payload})
         default:
             return state
     }

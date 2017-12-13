@@ -3,40 +3,28 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import LayoutCard from '../../components/LayoutCard'
 import Table from '../../components/Geographic/Table'
-import TextField from 'material-ui/TextField'
-import {selectGeoParameter} from '../../actions/geographic'
+import FormLocation from './FormLocation'
+import {selectGeoParameter, findLocation, selectLocation} from '../../actions/geographic'
 class Geographic extends Component {
     constructor(props){
         super(props)
         this.handleOnSelectRow=this.handleOnSelectRow.bind(this)
+        this.handleOnSelectRowLocation=this.handleOnSelectRowLocation.bind(this)
     }
-   handleOnSelectRow(selectedRows){
+    handleOnSelectRowLocation(selectedRows) {
+        const index = selectedRows.shift(), {result} = this.props.geographic.location
+        if(result[index]!==undefined){
+            this.props.selectLocation(result[index], index)
+        }
+    }
+    handleOnSelectRow(selectedRows){
        this.props.selectGeoParameter(selectedRows.shift())
     }
     render() {
-        const {parameters, selected, selectedIndex} = this.props.geographic
+        const {parameter, location} = this.props.geographic
         return <LayoutCard title="PARAMETROS GEOGRAFICOS Y DE RADIACIÓN SOLAR">
-            <TextField
-                    name="latitud"
-                    hintText="Latitud"
-                    floatingLabelText="Latitud"
-                    type="text"
-            />
-            <TextField
-                    name="longitud"
-                    hintText="Longitud"
-                    floatingLabelText="Longitud"
-                    type="text"
-            />
-            <br/>
-            <TextField
-                    name="location"
-                    hintText="Location"
-                    floatingLabelText="Location"
-                    type="text"
-            />
-            <Table parameters={parameters} selected={selected} selectedIndex={selectedIndex} handleOnSelectRow={this.handleOnSelectRow}/>
-            
+            <FormLocation handleClick={this.props.findLocation} {...location} handleOnSelectRow={this.handleOnSelectRowLocation}/>
+            <Table {...parameter} handleOnSelectRow={this.handleOnSelectRow}/>
         </LayoutCard>
     }
 }
@@ -50,6 +38,8 @@ const mapStateToProps = (state, props)=> {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         selectGeoParameter: selectGeoParameter,
+        findLocation: findLocation,
+        selectLocation: selectLocation,
     },dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Geographic)

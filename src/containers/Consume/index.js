@@ -10,15 +10,9 @@ import Energy from '../../components/Consume/Energy'
 import {updateAttribute} from '../../actions/consume'
 
 import {addConsumeParam, removeConsumeParam} from '../../actions/consume'
-let typingTimer
 class Consume extends Component {
-    constructor(props) {
-        super(props)
-        this.typingTimer = {}
-    }
-
     render() {
-        const {items, totals, power_factor, energy, handleAdd, handleRemove} = this.props.consume
+        const {items, totals, power_factor, energy} = this.props.consume
         return <LayoutCard title="PARAMETROS DE CONSUMO Y ENERGÍA">
             <InputTable items={items} onClickAdd={(e, data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
             <AdditionalsTable {...totals}/>

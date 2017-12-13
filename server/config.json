@@ -1,0 +1,20 @@
+{
+  "port":3001,
+  "mongodb":{
+    "host":"mongodb://localhost:27017"
+  },
+  "nasa":{
+    "url":"https://eosweb.larc.nasa.gov/cgi-bin/sse/grid.cgi",
+    "params":[
+      ["num","122056"],
+      ["submit","Submit"],
+      ["hgt","100"],
+      ["veg","17"],
+      ["sitelev",""],
+      ["email","skip@larc.nasa.gov"],
+      ["p","grid_id"],
+      ["step","2"]
+    ],
+    "content":"Parameters for Tilted Solar Panels:"
+  }
+}

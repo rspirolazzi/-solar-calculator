@@ -16,15 +16,13 @@ const initSolarPanel = {
 const initState = {
     items: [],
 }
-const calculateTotals = ()=> {
-    return {}
-}
 const solarPanel = (state = initState, {type, payload})=> {
     let newState={}, items=[], item={}
     switch (type) {
         case ADD:
             newState = Object.assign({}, state, {last_update: Date.now()})
-            items = newState.items, item = {...payload.item}
+            items = newState.items
+            item = {...payload.item}
             item.id = payload.id
             item.w_nominal = calculateWNominalFromSolarPanel(item)
             items.push(item)

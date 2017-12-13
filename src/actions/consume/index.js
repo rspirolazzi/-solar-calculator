@@ -15,7 +15,7 @@ const _addConsumeParam = (item)=> ({
 const _updateAttribute = (key, value)=> ({
     type: UPDATE_ATTRIBUTE,
     payload: {
-        [key]: parseInt(value)
+        [key]: parseInt(value, 0)
     }
 })
 const _removeConsumeParam = (id)=>({

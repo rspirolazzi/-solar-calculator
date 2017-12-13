@@ -1,5 +1,5 @@
 const initState = {
-    geographic: {
+    /*geographic: {
         parameters: [
             {angle:'0°' , jan:'7,01', feb:'6,06', mar:'4,86', apr:'3,61', may:'2,70', jun:'2,20', jul:'2,43', aug:'3,22', sept:'4,49', oct:'5,22', nov:'6,41', dec:'6,92'},
             {angle:'19°', jan:'6,84', feb:'6,17', mar:'5,30', apr:'4,28', may:'3,49', jun:'2,96', jul:'3,21', aug:'3,95', sept:'5,07', oct:'5,44', nov:'6,32', dec:'6,68'},
@@ -8,7 +8,7 @@ const initState = {
             {angle:'90°', jan:'2,55', feb:'2,88', mar:'3,26', apr:'3,50', may:'3,48', jun:'3,23', jul:'3,37', aug:'3,50', sept:'3,51', oct:'2,79', nov:'2,54', dec:'2,43'},
             {angle:'OPT', jan:'7,02', feb:'6,19', mar:'5,36', apr:'4,62', may:'4,11', jun:'3,67', jul:'3,89', aug:'4,40', sept:'5,23', oct:'5,44', nov:'6,43', dec:'6,92'},
         ]
-    },
+    },*/
     consume:{
         items: [
             {name: 'Luz',qty: 5,watt: 10,winterHs: 7,summerHs: 5,totalWt: 50,totalWpt: 50	,totalWinterWhDay: 350,totalSummerWhDay: 250,},

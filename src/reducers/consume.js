@@ -8,7 +8,7 @@ import {
 import _ from 'lodash'
 const initConsume = {
     name: '',
-    qty: '',
+    qty: 1,
     watt: '',
     winterHs: '',
     summerHs: '',

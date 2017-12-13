@@ -1,9 +1,5 @@
-import React, {Component} from 'react'
-import {
-    List,
-    ListItem,
-} from 'material-ui/List'
-import Divider from 'material-ui/Divider'
+import React from 'react'
+import {List,ListItem} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 import {reduceAddToNumber} from '../../utils/collection'
 const TotalsConsume = ({items=[]})=> {
