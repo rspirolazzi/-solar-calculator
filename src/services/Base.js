@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = 'http://localhost:3001'
+const URL = window.env.API_URL || 'http://localhost:3001'
 class Base {
     constructor(){
         this.axiosInstance = axios.create({
