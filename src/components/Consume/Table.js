@@ -41,7 +41,7 @@ const TextRow = ({id, name, qty, watt, winterHs, summerHs, totalWt, totalWpt, to
 
 const ConsumeTable = ({items=[], onClickAdd, onClickRemove})=> {
     const addButton = (id, data, cb) => <FloatingActionButton onClick={(e)=>{cb();onClickAdd(e, data)}} mini={true}><ContentAdd /></FloatingActionButton>
-    const removeButton = (id, data) => <FloatingActionButton onClick={(e)=>onClickRemove(e, id, data)}
+    const removeButton = (id, data) => <FloatingActionButton secondary={true} onClick={(e)=>onClickRemove(e, id, data)}
                                                              mini={true}><RemoveAdd /></FloatingActionButton>
 
     return <Table selectable={false}>

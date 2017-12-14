@@ -19,7 +19,7 @@ class Inverters extends Component {
             <InfoCharge value={getPowerOfChargeControllerPanel(battery.parallel,solarPanel.items)}/>
             <InvertersTable items={items} onClickAdd={(e,data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
             <InverterOfPower {...consume}/>
-            <InverterData onChange={this.props.updateAttribute}/>
+            <InverterData {...inverter} onChange={this.props.updateAttribute}/>
         </LayoutCard>
     }
 }

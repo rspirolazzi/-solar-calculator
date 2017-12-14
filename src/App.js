@@ -13,6 +13,12 @@ import {PersistGate} from 'redux-persist/es/integration/react'
 import Loading from './components/Loading'
 import NewIcon  from 'material-ui/svg-icons/content/add'
 import CreateNewButton from 'material-ui/FloatingActionButton'
+
+import IconButton from 'material-ui/IconButton';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
 // Font
 import 'typeface-roboto'
 import styles from './styles'
@@ -28,10 +34,23 @@ const {store, persistor} = configureStore()
 const onBeforeLift =()=>{
     console.log('onBeforeLift')
 }
-const clearData = ()=>{
+const clearData = (e)=>{
+    e.preventDefault()
     console.log('ClearData')
-    persistor.purge()
+    persistor.purge(store)
+    window.location.reload()
 }
+
+const MenuRight = (props) => (
+    <IconMenu
+        {...props}
+        iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+    >
+        <MenuItem primaryText="Nuevo" />
+    </IconMenu>
+)
 
 class App extends Component {
     render() {
@@ -39,7 +58,7 @@ class App extends Component {
             <Provider store={store}>
                 <PersistGate persistor={persistor} loading={<Loading show={true} />} onBeforeLift={onBeforeLift}>
                     <div style={styles.bg}>
-                        <AppBar title="Calculo de sistema Fotovoltaico"/>
+                        <AppBar title="Calculo de sistema Fotovoltaico" iconElementRight={<MenuRight/>}/>
                         <Layout styles={styles}/>
                         <CreateNewButton onClick={clearData}>
                             <NewIcon/>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import LayoutCard from '../../components/LayoutCard'
+import {getTotalOfCost} from '../../utils/collection'
 
 import {
     Table,
@@ -16,8 +17,9 @@ class TotalCost extends Component {
     render() {
         const {inverter, solarPanel, battery} = this.props
         const {isComplete} = inverter
+        let total = getTotalOfCost(this.props)
         return <LayoutCard show={isComplete} title="COSTO DE INVERSIÓN EN EQUIPOS">
-            <Table>
+            <Table selectable={false}>
                 <TableHeader>
                     <TableRow>
                         <TableHeaderColumn>Componente</TableHeaderColumn>
@@ -36,8 +38,8 @@ class TotalCost extends Component {
                     {battery.items.map(bat=><TableRow>
                         <TableRowColumn>Banco de Baterías</TableRowColumn>
                         <TableRowColumn>{bat.model}</TableRowColumn>
-                        <TableRowColumn>1</TableRowColumn>
-                        <TableRowColumn>USD {bat.price}</TableRowColumn>
+                        <TableRowColumn>{battery.totalOfBattery.qty}</TableRowColumn>
+                        <TableRowColumn>USD {battery.totalOfBattery.qty*bat.price}</TableRowColumn>
                     </TableRow>)}
                     {inverter.items.map(inv=><TableRow>
                         <TableRowColumn>Regulador de carga</TableRowColumn>
@@ -57,28 +59,10 @@ class TotalCost extends Component {
                         <TableRowColumn></TableRowColumn>
                         <TableRowColumn></TableRowColumn>
                         <TableRowColumn></TableRowColumn>
-                        <TableRowColumn>USD {0}</TableRowColumn>
+                        <TableRowColumn>USD {total}</TableRowColumn>
                     </TableRow>
                 </TableFooter>
             </Table>
-            {/*<Divider/>
-             <Table>
-             <TableHeader>
-             <TableRow>
-             <TableHeaderColumn>Componente</TableHeaderColumn>
-             <TableHeaderColumn>Inversión</TableHeaderColumn>
-             </TableRow>
-             </TableHeader>
-             <TableBody>
-             <TableRow><TableRowColumn>Cables</TableRowColumn><TableRowColumn>USD 650,00</TableRowColumn></TableRow>
-             <TableRow><TableRowColumn>Tablero</TableRowColumn><TableRowColumn>USD 550,00</TableRowColumn></TableRow>
-             <TableRow><TableRowColumn>Soportes</TableRowColumn><TableRowColumn>USD 800,00</TableRowColumn></TableRow>
-             <TableRow><TableRowColumn>Instalación (7 dias de trabajo)</TableRowColumn><TableRowColumn>USD 1.400,00</TableRowColumn></TableRow>
-             </TableBody>
-             <TableFooter>
-             <TableRow><TableRowColumn></TableRowColumn><TableRowColumn>USD 3.400,00</TableRowColumn></TableRow>
-             </TableFooter>
-             </Table>*/}
         </LayoutCard>
     }
 }

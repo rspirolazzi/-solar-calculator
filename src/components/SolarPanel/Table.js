@@ -28,7 +28,7 @@ const headers = [
 ]
 
 const TextRow=({id,power,vol,short_power,nominal_power,model,price, qty, subtotal, temp, actionButton})=>{
-    return <TableRow selectable={false}>
+    return <TableRow>
         <TableRowColumn>{power}</TableRowColumn>
         <TableRowColumn>{vol}</TableRowColumn>
         <TableRowColumn>{short_power}</TableRowColumn>
@@ -44,7 +44,7 @@ const TextRow=({id,power,vol,short_power,nominal_power,model,price, qty, subtota
 }
 const SolarPanelTable = ({items=[], onClickAdd, onClickRemove})=>{
     const addButton = (id, data, cb) => <FloatingActionButton onClick={(e)=>{cb();onClickAdd(e, data)}} mini={true}><ContentAdd /></FloatingActionButton>
-    const removeButton = (id) => <FloatingActionButton onClick={(e)=>onClickRemove(e, id)} mini={true}><RemoveAdd /></FloatingActionButton>
+    const removeButton = (id) => <FloatingActionButton secondary={true} onClick={(e)=>onClickRemove(e, id)} mini={true}><RemoveAdd /></FloatingActionButton>
 
     return <Table selectable={false}>
     <TableHeader>

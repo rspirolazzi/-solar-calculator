@@ -17,7 +17,7 @@ class Consume extends Component {
             return <LayoutCard show={isComplete} title="PARAMETROS DE CONSUMO Y ENERGÍA">
                 <InputTable items={items} onClickAdd={(e, data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
                 <AdditionalsTable {...totals}/>
-                <PowerInput value={power_factor}/>
+                <PowerInput value={power_factor} onChangeAttr={this.props.handleUpdateAttr}/>
                 <Totals1  {...totals}/>
                 <Energy {...energy} {...totals} onChangeAttr={this.props.handleUpdateAttr}/>
             </LayoutCard>

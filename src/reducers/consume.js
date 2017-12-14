@@ -85,7 +85,7 @@ const geographic = (state = initState, {type, payload})=> {
             isComplete(newState)
             return newState
         case UPDATE_ATTRIBUTE:
-            newState = _.merge({}, state, {energy: payload})
+            newState = _.merge({}, state, payload)
             calculateEnergy(newState)
             isComplete(newState)
             return newState

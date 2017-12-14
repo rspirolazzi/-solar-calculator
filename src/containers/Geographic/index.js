@@ -18,7 +18,9 @@ class Geographic extends Component {
         }
     }
     handleOnSelectRow(selectedRows){
-       this.props.selectGeoParameter(selectedRows.shift())
+        if(selectedRows.length >0){
+            this.props.selectGeoParameter(selectedRows.shift())
+        }
     }
     render() {
         const {parameter, location} = this.props.geographic

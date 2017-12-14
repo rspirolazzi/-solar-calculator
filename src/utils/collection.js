@@ -49,3 +49,12 @@ export const totalPowerSolarPanel=(items)=>{
     const qty = _.toNumber(reduceAddToNumber(items, 'qty'))
     return qty*power
 }
+
+export const getTotalOfCost=({inverter, solarPanel, battery})=>{
+    let total = 0
+    total += reduceAddToNumber(solarPanel.items, 'subtotal')
+    total += battery.totalOfBattery.qty * reduceAddToNumber(battery.items, 'price')
+    total += reduceAddToNumber(inverter.items, 'subTotal')
+    total += _.toNumber(inverter.price)
+    return total
+}

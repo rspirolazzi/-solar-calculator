@@ -30,7 +30,7 @@ class TextFieldRow extends TextFieldRowConsume {
     }
 
     render() {
-        return <TableRow selectable={false}>
+        return <TableRow>
             <TableRowColumn><TextField hintText="Potencia del Panel" value={this.state.power} onChange={this.onChange} name="power" type="text"/></TableRowColumn>
             <TableRowColumn><TextField hintText="Voltaje del panel" value={this.state.vol} onChange={this.onChange} name="vol" type="text"/></TableRowColumn>
             <TableRowColumn><TextField hintText="Corriente de Corto Circuito" value={this.state.short_power} onChange={this.onChange} name="short_power" type="number"/></TableRowColumn>
