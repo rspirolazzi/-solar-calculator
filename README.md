@@ -69,3 +69,15 @@ Al ir agregando paneles se iran totalizando:
 2. Costo de Inversión
 
 Al ingresar uno o mas paneles, se habilitara la siguiente opción.
+
+## DIMENSIONAMIENTO DEL ARREGLO DE PANELES Y BANCO DE BATERÍAS
+Desde esta opción se debe seleccionar el Voltaje para el banco de Baterias
+![alt text](http://rspirolazzi.com:3001/previews/seleccion_v.jpg "Selección de Voltaje") 
+Se habilitaran mas opciones:
+![alt text](http://rspirolazzi.com:3001/previews/seleccion_v_opciones.jpg "Selección de Voltaje") 
+**TODO:** Por ahora es necesario completar las opciones para realizar el calculo automatico.
+
+
+## DIMENSIONAMIENTO DEL REGULADOR DE CARGA E INVERSOR
+## COSTO DE INVERSIÓN EN EQUIPOS
+
