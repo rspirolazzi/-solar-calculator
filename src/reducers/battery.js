@@ -48,7 +48,7 @@ const calculateTotalOfBattery= (newState, {solarPanels, power_total, power_facto
     return {qty,capacity,totalPrice, qtyInSeries, qtyInParallel, maxPowerOfChargeBankBatteries, maxPowerOfUnChargeBankBatteries, maxPowerOfChargeBankBatteriesC20,maxPowerOfUnChargeBankBatteriesC5}
 }
 const isComplete=(newState)=>{
-    newState.isComplete = newState.voltage != ''
+    newState.isComplete = newState.voltage !== ''
 }
 const battery = (state = initState, {type, payload})=> {
     let newState

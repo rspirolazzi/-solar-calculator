@@ -1,4 +1,4 @@
-import {grey100, deepOrange500} from 'material-ui/styles/colors'
+import {grey100} from 'material-ui/styles/colors'
 const styles = {
     container: {
         textAlign: 'center',

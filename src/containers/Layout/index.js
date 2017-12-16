@@ -6,6 +6,7 @@ import SolarPanel from '../SolarPanel'
 import Batteries from '../Batteries'
 import Inverters from '../Inverters'
 import TotalCost from '../TotalCost'
+import SnackBar from '../Snackbar'
 
 class Layout extends Component {
     render() {
@@ -24,6 +25,7 @@ class Layout extends Component {
             <br/>
             <TotalCost/>
             <br/>
+            <SnackBar/>
         </div>
     }
 }

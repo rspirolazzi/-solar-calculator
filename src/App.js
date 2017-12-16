@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import {Provider} from 'react-redux'
 import configureStore from './configureStore'
-import configurePersistorStore from './configurePersistorStore'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles'
 

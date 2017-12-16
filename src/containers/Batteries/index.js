@@ -17,12 +17,12 @@ class Batteries extends Component {
         const {solarPanel} = this.props
         const {battery} = this.props
         const {items, isComplete} = solarPanel
-        const suggest = suggestVoltage(solarPanel.items)
+        //const suggest = suggestVoltage(solarPanel.items)
         const {voltage, totalBankBattery,totalOfBattery}= battery
         return <LayoutCard show={isComplete} title="DIMENSIONAMIENTO DEL ARREGLO DE PANELES Y BANCO DE BATERÍAS">
             <PowerOfSolarPanels solarPanels={items}/>
             <ParamsOfVoltage selected={voltage} onClickSelect={this.props.selectVoltage}/>
-            {voltage != ''?<div>
+            {voltage !== ''?<div>
             <SolarPanelsDistribution {...battery}/>
             <ListOfBatteries {...battery} totalBankBattery={totalBankBattery}
                                           totalOfBattery={totalOfBattery}

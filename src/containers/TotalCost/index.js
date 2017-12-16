@@ -18,6 +18,7 @@ class TotalCost extends Component {
         const {inverter, solarPanel, battery} = this.props
         const {isComplete} = inverter
         let total = getTotalOfCost(this.props)
+        let id = 0
         return <LayoutCard show={isComplete} title="COSTO DE INVERSIÓN EN EQUIPOS">
             <Table selectable={false}>
                 <TableHeader>
@@ -29,19 +30,19 @@ class TotalCost extends Component {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {solarPanel.items.map(panel=><TableRow key={panel.id}>
+                    {solarPanel.items.map(panel=><TableRow key={id++}>
                         <TableRowColumn>Paneles Solares</TableRowColumn>
                         <TableRowColumn>{panel.model}</TableRowColumn>
                         <TableRowColumn>{panel.qty}</TableRowColumn>
                         <TableRowColumn>USD {panel.subtotal}</TableRowColumn>
                     </TableRow>)}
-                    {battery.items.map(bat=><TableRow>
+                    {battery.items.map(bat=><TableRow key={id++}>
                         <TableRowColumn>Banco de Baterías</TableRowColumn>
                         <TableRowColumn>{bat.model}</TableRowColumn>
                         <TableRowColumn>{battery.totalOfBattery.qty}</TableRowColumn>
                         <TableRowColumn>USD {battery.totalOfBattery.qty*bat.price}</TableRowColumn>
                     </TableRow>)}
-                    {inverter.items.map(inv=><TableRow>
+                    {inverter.items.map(inv=><TableRow key={id++}>
                         <TableRowColumn>Regulador de carga</TableRowColumn>
                         <TableRowColumn>{inv.model}</TableRowColumn>
                         <TableRowColumn>{inv.qty}</TableRowColumn>
@@ -56,10 +57,7 @@ class TotalCost extends Component {
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TableRowColumn></TableRowColumn>
-                        <TableRowColumn></TableRowColumn>
-                        <TableRowColumn></TableRowColumn>
-                        <TableRowColumn>USD {total}</TableRowColumn>
+                        <TableRowColumn colSpan="4">USD {total}</TableRowColumn>
                     </TableRow>
                 </TableFooter>
             </Table>
