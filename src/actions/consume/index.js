@@ -7,7 +7,7 @@ import {showMessage} from '../session'
  */
 export const addConsumeParam = (item)=>(dispatch, getState)=>{
     dispatch(_addConsumeParam(item))
-    dispatch(showMessage('Se agrego un consumo'))
+    dispatch(showMessage(`Se agrego ${item.name}`))
 }
 /**
  * Actualiza un item de consumo en el state consume

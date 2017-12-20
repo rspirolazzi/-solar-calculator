@@ -31,15 +31,7 @@ export default class DialogAddConsume extends Dialog {
         totalWinterWhDay: 0,
         totalSummerWhDay: 0,
     })
-    resetForm=() =>{
-        this.setState({form: this.initState()})
-    }
-    onChange=(e)=> {
-        let {form} = this.state
-        form[e.target.name]= e.target.value
-        this.calculateValues(form)
-        this.setState({form:form})
-    }
+    
     onChangeAuto=(e, isInputChecked)=> {
         const {form} = this.state
         this.calculateValues(form)
@@ -48,16 +40,7 @@ export default class DialogAddConsume extends Dialog {
             automatic: {[e.target.name]: isInputChecked}
         })
     }
-    clickClose=()=>{
-        this.close()
-        this.resetForm()
-    }
-    clickSubmit=()=>{
-        this.props.onAddConsume(this.state.form)
-        this.close()
-        this.resetForm()
-    }
-
+    
     calculateValues=(form) =>{
         const result = {}
         result.totalWt = Math.max(0, (form.watt * form.qty)) || 0
@@ -103,7 +86,4 @@ export default class DialogAddConsume extends Dialog {
             </Col2>
         </Row>
     </form>
-}
-DialogAddConsume.propTypes={
-    onAddConsume:PropTypes.func.isRequired
 }

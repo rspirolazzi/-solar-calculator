@@ -41,7 +41,7 @@ export const qtyPanelsInSeries = (items, voltage)=> {
         //TODO por ahora agarro el mas alto
         const panel = _.sortBy(items, ['vol']);
         let panelVoltage = panel.shift().vol
-        result = Math.round(_.toNumber(voltage) / _.toNumber(panelVoltage))
+        result = (_.toNumber(voltage) / _.toNumber(panelVoltage)).toFixed(2)
     }
     return result
 }
@@ -54,7 +54,7 @@ export const qtyPanelsInSeries = (items, voltage)=> {
 export const qtyPanelsInParallel = (items=[], series)=> {
     let result = 0, qty = reduceAddToNumber(items, 'qty')
     if (_.isNumber(qty) && _.isNumber(series)) {
-        result = Math.round(_.toNumber(qty) / _.toNumber(series))
+        result = (_.toNumber(qty) / _.toNumber(series)).toFixed(2)
     }
     return result
 }
@@ -86,14 +86,14 @@ export const bankOfBatteryCapacity = (totalConsumeOfYear, {voltage, daysOfAutono
 export const qtyOfBatteries=(totalBankBattery, voltage, batteryCapacity, batteryVoltage)=>{
     let result = 0
     if(_.toNumber(totalBankBattery) && _.toNumber(voltage) && _.toNumber(batteryCapacity) && _.toNumber(batteryVoltage)){
-        result = Math.round((_.toNumber(totalBankBattery) * _.toNumber(voltage))/(_.toNumber(batteryCapacity) * _.toNumber(batteryVoltage)))
+        result = ((_.toNumber(totalBankBattery) * _.toNumber(voltage))/(_.toNumber(batteryCapacity) * _.toNumber(batteryVoltage))).toFixed(2)
     }
     return result
 }
 export const capacityOfBatteries=(batteryCapacity,qtyInParallel )=>{
     let result = 0
     if(_.toNumber(batteryCapacity) && _.toNumber(qtyInParallel)){
-        result = Math.round(_.toNumber(batteryCapacity) * _.toNumber(qtyInParallel))
+        result = (_.toNumber(batteryCapacity) * _.toNumber(qtyInParallel)).toFixed(2)
     }
     return result
 }
@@ -123,14 +123,14 @@ export const qtyBatteriesInSeries = (voltage, items)=> {
         //TODO por ahora agarro el mas alto
         const battery = _.sortBy(items, ['voltage']);
         let batteryVoltage = battery.shift().voltage
-        result = Math.round(_.toNumber(voltage) / _.toNumber(batteryVoltage))
+        result = (_.toNumber(voltage) / _.toNumber(batteryVoltage)).toFixed(2)
     }
     return result
 }
 export const qtyBatteriesInParallel = (qtyOfBatteries, series)=> {
     let result = 0
     if (_.toNumber(qtyOfBatteries) && _.toNumber(series)) {
-        result = Math.round(_.toNumber(qtyOfBatteries) / _.toNumber(series))
+        result = (_.toNumber(qtyOfBatteries) / _.toNumber(series)).toFixed(2)
     }
     return result
 }
@@ -147,7 +147,7 @@ export const getMaxPowerOfChargeBankBatteries=(qtySolarPanelsInParallel, items)=
         //TODO por ahora agarro el mas alto
         const solarPanel = _.sortBy(items, ['nominal_power']);
         let nominal_power = solarPanel.shift().nominal_power
-        result = Math.round(MAX_POWER_OF_CHARGE*qtySolarPanelsInParallel*nominal_power)
+        result = (MAX_POWER_OF_CHARGE*qtySolarPanelsInParallel*nominal_power).toFixed(2)
     }
     return result
 }
@@ -163,7 +163,7 @@ export const getMaxPowerOfUnChargeBankBatteries=(power_total, power_factor, batt
     
     let result = 0
     if (_.toNumber(power_total) && _.toNumber(power_factor) && _.toNumber(batteryVoltage) && _.toNumber(inverterEfficient)) {
-        result = Math.round((power_total/power_factor)/(batteryVoltage*(inverterEfficient/100)))
+        result = ((power_total/power_factor)/(batteryVoltage*(inverterEfficient/100))).toFixed(2)
     }
     return result
 }
@@ -176,7 +176,7 @@ export const getMaxPowerOfUnChargeBankBatteries=(power_total, power_factor, batt
 export const getMaxPowerOfChargeBankBatteriesC20=(qtySolarPanelsInParallel, batteryCapacity)=>{
     let result = 0
     if (_.toNumber(batteryCapacity) && _.toNumber(qtySolarPanelsInParallel)) {
-        result = Math.round((_.toNumber(batteryCapacity)/MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C20)*_.toNumber(qtySolarPanelsInParallel))
+        result = ((_.toNumber(batteryCapacity)/MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C20)*_.toNumber(qtySolarPanelsInParallel)).toFixed(2)
     }
     return result
 }
@@ -190,7 +190,7 @@ export const getMaxPowerOfChargeBankBatteriesC20=(qtySolarPanelsInParallel, batt
 export const getMaxPowerOfUnChargeBankBatteriesC5=(qtySolarPanelsInParallel, batteryCapacity)=>{
     let result = 0
     if (_.toNumber(batteryCapacity) && _.toNumber(qtySolarPanelsInParallel)) {
-        result = Math.round((_.toNumber(batteryCapacity)/MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C5)*_.toNumber(qtySolarPanelsInParallel))
+        result = ((_.toNumber(batteryCapacity)/MAX_POWER_OF_UNCHARGE_BANK_BATTERIES_C5)*_.toNumber(qtySolarPanelsInParallel)).toFixed(2)
     }
     return result
 }
@@ -202,7 +202,7 @@ export const getMaxPowerOfUnChargeBankBatteriesC5=(qtySolarPanelsInParallel, bat
 export const getMaxPowerOfUnChargeBankBatteriesByVar=(qtySolarPanelsInParallel, batteryCapacity, variable)=>{
     let result = 0
     if (_.toNumber(batteryCapacity) && _.toNumber(qtySolarPanelsInParallel)) {
-        result = Math.round((_.toNumber(batteryCapacity)/variable)*_.toNumber(qtySolarPanelsInParallel))
+        result = ((_.toNumber(batteryCapacity)/variable)*_.toNumber(qtySolarPanelsInParallel)).toFixed(2)
     }
     return result
 }
@@ -219,7 +219,7 @@ export const getPowerOfChargeControllerPanel=(qtySolarPanelsInParallel, items)=>
         //TODO por ahora agarro el mas alto
         const solarPanel = _.sortBy(items, ['short_power']);
         let short_power = solarPanel.shift().short_power
-        result = Math.round(MAX_POWER_OF_CHARGE*qtySolarPanelsInParallel*short_power)
+        result = (MAX_POWER_OF_CHARGE*qtySolarPanelsInParallel*short_power).toFixed(2)
     }
     return result
 }
@@ -232,7 +232,7 @@ export const getPowerOfChargeControllerPanel=(qtySolarPanelsInParallel, items)=>
 export const getPowerRequiredInCA=(power_total, power_factor)=>{
     let result = 0
     if (_.toNumber(power_total) && _.toNumber(power_factor)) {
-        result = Math.round((_.toNumber(power_total)*MAX_POWER_OF_CHARGE)/_.toNumber(power_factor))
+        result = ((_.toNumber(power_total)*MAX_POWER_OF_CHARGE)/_.toNumber(power_factor)).toFixed(2)
     }
     return result
 }
@@ -245,7 +245,7 @@ export const getPowerRequiredInCA=(power_total, power_factor)=>{
 export const getPowerPicoOutputCA=(power_p_total, power_factor)=>{
     let result = 0
     if (_.toNumber(power_p_total) && _.toNumber(power_factor)) {
-        result = Math.round(_.toNumber(power_p_total)/(POWER_PICO_OUTPUT_CA*_.toNumber(power_factor)))
+        result = (_.toNumber(power_p_total)/(POWER_PICO_OUTPUT_CA*_.toNumber(power_factor))).toFixed(2)
     }
     return result
 }

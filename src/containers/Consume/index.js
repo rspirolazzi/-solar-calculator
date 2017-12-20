@@ -9,7 +9,7 @@ import Totals1 from '../../components/Consume/Totals'
 import Energy from '../../components/Consume/Energy'
 import {updateAttribute} from '../../actions/consume'
 import DialogAddConsume  from '../../components/Consume/DialogAddConsume'
-//import DialogAddConsume  from '../../components/Common/Dialog'
+//import DialogAddPanel  from '../../components/Common/Dialog'
 
 import {addConsumeParam, removeConsumeParam} from '../../actions/consume'
 class Consume extends Component {
@@ -17,7 +17,7 @@ class Consume extends Component {
         const {items, totals, power_factor, energy} = this.props.consume
         const {isComplete} = this.props.geographic
         return <LayoutCard show={isComplete} title="PARAMETROS DE CONSUMO Y ENERGÍA">
-            <DialogAddConsume title="Agregar consumo" labelDialog="Agregar un consumo" onAddConsume={this.props.handleAdd}/>
+            <DialogAddConsume title="Agregar consumo" labelDialog="Agregar un consumo" onAdd={this.props.handleAdd}/>
             <InputTable items={items} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
             <AdditionalsTable {...totals}/>
             <PowerInput value={power_factor} onChangeAttr={this.props.handleUpdateAttr}/>

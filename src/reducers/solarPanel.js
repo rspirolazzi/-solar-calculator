@@ -5,7 +5,7 @@ const initSolarPanel = {
     vol: 0,
     short_power: 0,
     nominal_power: 0,
-    model: '',
+    name: '',
     price: 0,
     qty: 1,
     subtotal: 0,

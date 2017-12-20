@@ -6,6 +6,7 @@ import InputTable from '../../components/SolarPanel/Table'
 import Totals from '../../components/SolarPanel/Totals'
 import Subheader from 'material-ui/Subheader'
 import {addPanelParam, removePanelParam} from '../../actions/solarPanel'
+import DialogAddPanel  from '../../components/SolarPanel/DialogAddPanel'
 class SolarPanel extends Component {
     constructor(props) {
         super(props)
@@ -18,7 +19,8 @@ class SolarPanel extends Component {
         const {items} = solarPanel
         return <LayoutCard show={isComplete} title="PANELES SOLARES SELECCIONADOS PARA LA INSTALACIÓN">
             <Subheader>Panel Solar</Subheader>
-            <InputTable items={items} onClickAdd={(e,data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
+            <DialogAddPanel title="Agregar Panel Solar" labelDialog="Agregar un Panel Solar" onAdd={this.props.handleAdd}/>
+            <InputTable items={items} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
             <Totals items={items}/>
         </LayoutCard>
     }

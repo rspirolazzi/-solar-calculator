@@ -29,7 +29,7 @@ class ListOfBatteries extends Component {
     }
 
     render() {
-        const {capacity, voltage, model, price} = this.state.items[0]
+        const {capacity, voltage, name, price} = this.state.items[0]
         const {totalOfBattery} = this.props
         return <div>
             <Subheader>Banco de baterías</Subheader>
@@ -45,7 +45,7 @@ class ListOfBatteries extends Component {
             <Subheader>Datos de la Batería</Subheader>
             <TextField floatingLabelText="Capacidad de Bateria" hintText="Capacidad de Bateria" name="capacity" value={capacity} onChange={this.onChangeBattery}/>
             <TextField floatingLabelText="Voltaje Bateria" hintText="Voltaje Bateria" name="voltage" value={voltage} onChange={this.onChangeBattery}/>
-            <TextField floatingLabelText="Modelo" hintText="Modelo" name="model" value={model} onChange={this.onChangeBattery}/>
+            <TextField floatingLabelText="Modelo" hintText="Modelo" name="name" value={name} onChange={this.onChangeBattery}/>
             <TextField floatingLabelText="Costo USD IVA (10,5) incluido" hintText="Costo USD IVA (10,5) incluido" name="price" value={price} onChange={this.onChangeBattery}/>
 
             <Subheader>Datos de la Batería</Subheader>

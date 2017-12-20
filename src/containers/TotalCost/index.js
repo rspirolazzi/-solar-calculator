@@ -32,25 +32,25 @@ class TotalCost extends Component {
                 <TableBody>
                     {solarPanel.items.map(panel=><TableRow key={id++}>
                         <TableRowColumn>Paneles Solares</TableRowColumn>
-                        <TableRowColumn>{panel.model}</TableRowColumn>
+                        <TableRowColumn>{panel.name}</TableRowColumn>
                         <TableRowColumn>{panel.qty}</TableRowColumn>
                         <TableRowColumn>USD {panel.subtotal}</TableRowColumn>
                     </TableRow>)}
                     {battery.items.map(bat=><TableRow key={id++}>
                         <TableRowColumn>Banco de Baterías</TableRowColumn>
-                        <TableRowColumn>{bat.model}</TableRowColumn>
+                        <TableRowColumn>{bat.name}</TableRowColumn>
                         <TableRowColumn>{battery.totalOfBattery.qty}</TableRowColumn>
                         <TableRowColumn>USD {battery.totalOfBattery.qty*bat.price}</TableRowColumn>
                     </TableRow>)}
                     {inverter.items.map(inv=><TableRow key={id++}>
                         <TableRowColumn>Regulador de carga</TableRowColumn>
-                        <TableRowColumn>{inv.model}</TableRowColumn>
+                        <TableRowColumn>{inv.name}</TableRowColumn>
                         <TableRowColumn>{inv.qty}</TableRowColumn>
                         <TableRowColumn>USD {inv.price}</TableRowColumn>
                     </TableRow>)}
                     <TableRow>
                         <TableRowColumn>Inversor de corriente</TableRowColumn>
-                        <TableRowColumn>{inverter.model}</TableRowColumn>
+                        <TableRowColumn>{inverter.name}</TableRowColumn>
                         <TableRowColumn>1</TableRowColumn>
                         <TableRowColumn>USD {inverter.price}</TableRowColumn>
                     </TableRow>

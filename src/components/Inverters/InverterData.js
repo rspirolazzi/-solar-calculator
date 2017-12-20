@@ -8,7 +8,7 @@ class InverterData extends Component{
             outputPower:props.outputPower,
             inputVoltage:props.inputVoltage,
             maxPower:props.maxPower,
-            model:props.model,
+            name:props.name,
             price:props.price,
             total:0,
         }
@@ -17,6 +17,7 @@ class InverterData extends Component{
     onChange(e){
         const {name, value} = e.target
         this.props.onChange(name, value)
+        this.setState({[name]:value})
     }
     render(){
         return <div>
@@ -24,7 +25,7 @@ class InverterData extends Component{
             <TextField type="number" floatingLabelText="Potencia de Salida" hintText="Potencia de Salida" name="outputPower" value={this.state.outputPower} onChange={this.onChange}/>
             <TextField type="number" floatingLabelText="Voltaje de Entrada" hintText="Voltaje de Entrada" name="inputVoltage" value={this.state.inputVoltage} onChange={this.onChange}/>
             <TextField type="number" floatingLabelText="Máxima corriente" hintText="Máxima corriente" name="maxPower" value={this.state.maxPower} onChange={this.onChange}/>
-            <TextField type="text" floatingLabelText="Modelo" hintText="Modelo" name="model" value={this.state.model} onChange={this.onChange}/>
+            <TextField type="text" floatingLabelText="Modelo" hintText="Modelo" name="name" value={this.state.name} onChange={this.onChange}/>
             <TextField type="number" floatingLabelText="Costo USD" hintText="Costo USD" name="price" value={this.state.price} onChange={this.onChange}/>
         </div>
     }

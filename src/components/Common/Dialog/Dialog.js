@@ -14,7 +14,24 @@ export default class DialogSimple extends Component {
         super(props)
         this.state = {
             open: false,
+            form:this.initState(),
         }
+    }
+    initState = ()=>({})
+    resetForm=() =>{
+        this.setState({form: this.initState()})
+    }
+
+    clickClose=()=>{
+        this.close()
+        this.resetForm()
+    }
+
+    onChange=(e)=> {
+        let {form} = this.state
+        form[e.target.name]= e.target.value
+        this.calculateValues(form)
+        this.setState({form:form})
     }
 
     open = () => {
@@ -25,11 +42,10 @@ export default class DialogSimple extends Component {
         this.setState({open: false})
     }
 
-    clickClose=()=>{
-        this.close()
-    }
     clickSubmit=()=>{
+        this.props.onAdd(this.state.form)
         this.close()
+        this.resetForm()
     }
 
     getActions = ()=>[
@@ -57,6 +73,7 @@ export default class DialogSimple extends Component {
     }
 }
 DialogSimple.propTypes = {
+    onAdd:PropTypes.func.isRequired,
     labelDialog: PropTypes.string,
     title: PropTypes.string,
 }

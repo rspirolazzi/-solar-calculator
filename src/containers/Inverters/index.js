@@ -8,7 +8,7 @@ import InfoCharge from '../../components/Inverters/InfoCharge'
 import InverterData from '../../components/Inverters/InverterData'
 import {getPowerOfChargeControllerPanel} from '../../utils/formulas'
 import {addInverterParam, updateAttribute, removeInverterParam} from '../../actions/inverter'
-
+import DialogAddInverter  from '../../components/Inverters/DialogAddInverter'
 class Inverters extends Component {
     render() {
         const {inverter,battery, solarPanel, consume} = this.props;
@@ -17,6 +17,7 @@ class Inverters extends Component {
         
         return <LayoutCard show={isComplete} title="DIMENSIONAMIENTO DEL REGULADOR DE CARGA E INVERSOR">
             <InfoCharge value={getPowerOfChargeControllerPanel(battery.parallel,solarPanel.items)}/>
+            <DialogAddInverter title="Agregar nu regulador de carga" labelDialog="Agregar un regulador" onAdd={this.props.handleAdd}/>
             <InvertersTable items={items} onClickAdd={(e,data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
             <InverterOfPower {...consume}/>
             <InverterData {...inverter} onChange={this.props.updateAttribute}/>

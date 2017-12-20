@@ -6,7 +6,7 @@ const initState = {
     outputPower:0,
     inputVoltage:0,
     maxPower:0,
-    model:'',
+    name:'',
     price:0,
     qty:1,
 }

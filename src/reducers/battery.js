@@ -5,7 +5,7 @@ import {qtyPanelsInParallel, qtyPanelsInSeries, bankOfBatteryCapacity, qtyOfBatt
 const initBattery={
     capacity:220,//Ah
     voltage:12,//V
-    model:'Moura CLEAN 12MF220',
+    name:'Moura CLEAN 12MF220',
     price:550.85,//USD
 }
 const initState = {
