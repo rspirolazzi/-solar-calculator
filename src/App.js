@@ -17,6 +17,7 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import {HashRouter} from 'react-router-dom'
 
 // Font
 import 'typeface-roboto'
@@ -30,10 +31,10 @@ const muiTheme = getMuiTheme({
 })
 injectTapEventPlugin()
 const {store, persistor} = configureStore()
-const onBeforeLift =()=>{
+const onBeforeLift = ()=> {
     console.log('onBeforeLift')
 }
-const clearData = (e)=>{
+const clearData = (e)=> {
     e.preventDefault()
     console.log('ClearData')
     persistor.purge(store)
@@ -47,7 +48,7 @@ const MenuRight = (props) => (
         targetOrigin={{horizontal: 'right', vertical: 'top'}}
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
     >
-        <MenuItem primaryText="Nuevo" />
+        <MenuItem primaryText="Nuevo"/>
     </IconMenu>
 )
 
@@ -56,13 +57,15 @@ class App extends Component {
         return <MuiThemeProvider muiTheme={muiTheme}>
             <Provider store={store}>
                 <PersistGate persistor={persistor} loading={<Loading show={true} />} onBeforeLift={onBeforeLift}>
-                    <div style={styles.bg}>
-                        <AppBar title="Calculo de sistema Fotovoltaico" iconElementRight={<MenuRight/>}/>
-                        <Layout styles={styles}/>
-                        <CreateNewButton onClick={clearData}>
-                            <NewIcon/>
-                        </CreateNewButton>
-                    </div>
+                    <HashRouter>
+                        <div style={styles.bg}>
+                            <AppBar title="Calculo de sistema Fotovoltaico (beta)" iconElementRight={<MenuRight/>}/>
+                            <Layout styles={styles}/>
+                            <CreateNewButton onClick={clearData}>
+                                <NewIcon/>
+                            </CreateNewButton>
+                        </div>
+                    </HashRouter>
                 </PersistGate>
             </Provider>
         </MuiThemeProvider>
