@@ -19,10 +19,33 @@ module.exports = (callback)=> {
     nasa(server)
     geocoder(server)
 
-    server.get(
-        /\/(.*)?.*/,
+    //server.get(/\/(.*)?.*/,restify.plugins.serveStatic({directory: './build',}))
+
+    server.get(/\/static\/?.*/,
         restify.plugins.serveStatic({
-            directory: './build',
+            directory: './build/',
+        })
+    )
+    server.get(/\/img\/?.*/,
+        restify.plugins.serveStatic({
+            directory: './build/',
+        })
+    )
+    server.get(/\/js\/?.*/,
+        restify.plugins.serveStatic({
+            directory: './build/',
+        })
+    )
+    server.get(/\/css\/?.*/,
+        restify.plugins.serveStatic({
+            directory: './build/',
+        })
+    )
+
+    server.get('/',
+        restify.plugins.serveStatic({
+            directory: './build/',
+            default: 'index.html'
         })
     )
 

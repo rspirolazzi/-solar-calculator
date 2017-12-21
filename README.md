@@ -3,7 +3,7 @@
 Aplicación Web para realizar el dimensionamiento de un sistema solar fotovoltaico.
 
 ## Comenzar
-Ingresar a http://rspirolazzi.com:3001/index.html
+Ingresar a http://rspirolazzi.com:3001/
 
 ## PARAMETROS GEOGRAFICOS Y DE RADIACIÓN SOLAR
 Para comenzar con el dimensionamiento, es necesario registrar la zona donde se realizara la instalación.
