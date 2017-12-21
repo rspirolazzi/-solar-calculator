@@ -55,34 +55,34 @@ export default class DialogAddConsume extends Dialog {
     renderContentModal = ()=><form onSubmit={this.clickSubmit}>
         <Row>
             <Col4>
-                <TextField fullWidth floatingLabelText="Dispositivo" hintText="TV 55''" value={this.state.form.name} onChange={this.onChange} name="name" type="text"/>
+                <TextField autoFocus fullWidth floatingLabelText="Dispositivo" hintText="TV 55''" value={this.state.form.name} onChange={this.onChange} name="name" ref="name" type="text"/>
             </Col4>
             <Col2>
-                <TextField fullWidth floatingLabelText="Cantidad" hintText="1" value={this.state.form.qty} onChange={this.onChange} name="qty" type="number"/>
+                <TextField fullWidth floatingLabelText="Cantidad" hintText="1" value={this.state.form.qty} onChange={this.onChange} name="qty" ref="qty" type="number"/>
             </Col2>
             <Col2>
-                <TextField fullWidth floatingLabelText="Potencia [W]" hintText="600" value={this.state.form.watt} onChange={this.onChange} name="watt" type="number"/>
+                <TextField fullWidth floatingLabelText="Potencia [W]" hintText="600" value={this.state.form.watt} onChange={this.onChange} name="watt" ref="watt" type="number"/>
             </Col2>
             <Col1>
-                <TextField fullWidth floatingLabelText="Total [W]" hintText="" disabled={true} defaultValue={this.state.form.totalWt} value={this.state.form.totalWt} onChange={this.onChange} name="totalWt" type="number"/>
+                <TextField fullWidth floatingLabelText="Total [W]" hintText="" disabled={true} defaultValue={this.state.form.totalWt} value={this.state.form.totalWt} onChange={this.onChange} name="totalWt" ref="totalWt" type="number"/>
             </Col1>
             <Col1>
-                <TextField fullWidth floatingLabelText="Total pico [W]" hintText="" disabled={this.state.automatic.totalWpt} defaultValue={this.state.form.totalWpt} value={this.state.form.totalWpt} onChange={this.onChange} name="totalWpt" type="number"/>
+                <TextField fullWidth floatingLabelText="Total pico [W]" hintText="" disabled={this.state.automatic.totalWpt} defaultValue={this.state.form.totalWpt} value={this.state.form.totalWpt} onChange={this.onChange} name="totalWpt" ref="totalWpt" type="number"/>
             </Col1>
             <Col2>
-                <Toggle label="Calculo automatico (Total Pico)" defaultToggled={true} name="totalWpt" onToggle={this.onChangeAuto}/>
+                <Toggle label="Calculo automatico (Total Pico)" defaultToggled={true} name="totalWpt" ref="totalWpt" onToggle={this.onChangeAuto}/>
             </Col2>
             <Col2>
-                <TextField fullWidth floatingLabelText="HS Invierto" hintText="" value={this.state.form.winterHs} onChange={this.onChange} name="winterHs" type="number"/>
+                <TextField fullWidth floatingLabelText="HS Invierto" hintText="" value={this.state.form.winterHs} onChange={this.onChange} name="winterHs" ref="winterHs" type="number"/>
             </Col2>
             <Col2>
-                <TextField fullWidth floatingLabelText="Total HS Inviertno" hintText="" disabled={true} defaultValue={this.state.form.totalWinterWhDay} value={this.state.form.totalWinterWhDay} onChange={this.onChange} name="totalWinterWhDay" type="number"/>
+                <TextField fullWidth floatingLabelText="Total HS Inviertno" hintText="" disabled={true} defaultValue={this.state.form.totalWinterWhDay} value={this.state.form.totalWinterWhDay} onChange={this.onChange} name="totalWinterWhDay" ref="totalWinterWhDay" type="number"/>
             </Col2>
             <Col2>
-                <TextField fullWidth floatingLabelText="HS Verano" hintText="" value={this.state.form.summerHs} onChange={this.onChange} name="summerHs" type="number"/>
+                <TextField fullWidth floatingLabelText="HS Verano" hintText="" value={this.state.form.summerHs} onChange={this.onChange} name="summerHs" ref="summerHs" type="number"/>
             </Col2>
             <Col2>
-                <TextField fullWidth floatingLabelText="Total HS Verano" hintText="" disabled={true} defaultValue={this.state.form.totalSummerWhDay} value={this.state.form.totalSummerWhDay} onChange={this.onChange} name="totalSummerWhDay" type="number"/>
+                <TextField fullWidth floatingLabelText="Total HS Verano" hintText="" disabled={true} defaultValue={this.state.form.totalSummerWhDay} value={this.state.form.totalSummerWhDay} onChange={this.onChange} name="totalSummerWhDay" ref="totalSummerWhDay" type="number"/>
             </Col2>
         </Row>
     </form>

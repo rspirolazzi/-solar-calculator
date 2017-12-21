@@ -31,32 +31,32 @@ export default class DialogAddPanel extends Dialog {
     renderContentModal = ()=><form onSubmit={this.clickSubmit}>
         <Row>
             <Col4>
-                <TextField fullWidth floatingLabelText="Modelo" hintText=""  value={this.state.form.name} onChange={this.onChange} name="name" type="text"/>
+                <TextField autoFocus fullWidth floatingLabelText="Modelo" hintText="Ejemplo: Solartec KS80T - SL*"  value={this.state.form.name} onChange={this.onChange} name="name" type="text"/>
             </Col4>
             <Col1>
-                <TextField fullWidth floatingLabelText="Potencia del Panel" hintText="80" value={this.state.form.power} onChange={this.onChange} name="power" type="number"/>
+                <TextField fullWidth floatingLabelText="Potencia del Panel (W)" hintText="Ejemplo: 80" value={this.state.form.power} onChange={this.onChange} name="power" type="number"/>
             </Col1>
             <Col1>
-                <TextField fullWidth floatingLabelText="Voltaje del panel" hintText="12" value={this.state.form.vol} onChange={this.onChange} name="vol" type="number"/>
+                <TextField fullWidth floatingLabelText="Voltaje del panel (V)" hintText="Ejemplo: 12" value={this.state.form.vol} onChange={this.onChange} name="vol" type="number"/>
             </Col1>
             <Col1>
-                <TextField fullWidth floatingLabelText="Corriente de Corto Circuito" hintText="600" value={this.state.form.short_power} onChange={this.onChange} name="short_power" type="number"/>
+                <TextField fullWidth floatingLabelText="Corriente de Corto Circuito (A)" hintText="Ejemplo: 5.01" value={this.state.form.short_power} onChange={this.onChange} name="short_power" type="number"/>
             </Col1>
             <Col1>
-                <TextField fullWidth floatingLabelText="Corriente Nominal" hintText="" value={this.state.form.nominal_power} onChange={this.onChange} name="nominal_power" type="number"/>
+                <TextField fullWidth floatingLabelText="Corriente Nominal (A)" hintText="Ejemplo: 4.60" value={this.state.form.nominal_power} onChange={this.onChange} name="nominal_power" type="number"/>
             </Col1>
 
             <Col1>
-                <TextField fullWidth floatingLabelText="Precio" hintText=""  value={this.state.form.price} onChange={this.onChange} name="price" type="number"/>
+                <TextField fullWidth floatingLabelText="Precio" hintText="Ejemplo: 357.47"  value={this.state.form.price} onChange={this.onChange} name="price" type="number"/>
             </Col1>
             <Col1>
-                <TextField fullWidth floatingLabelText="Cantidad" hintText=""  value={this.state.form.qty} onChange={this.onChange} name="qty" type="number"/>
+                <TextField fullWidth floatingLabelText="Cantidad" hintText="Ejemplo: 16"  value={this.state.form.qty} onChange={this.onChange} name="qty" type="number"/>
             </Col1>
             <Col2>
                 <TextField fullWidth floatingLabelText="Subtotal" hintText="" disabled={true} defaultValue={this.state.form.subtotal} value={this.state.form.subtotal} onChange={this.onChange} name="subtotal" type="number"/>
             </Col2>
             <Col1>
-                <TextField fullWidth floatingLabelText="Temperatura" hintText="" value={this.state.form.temp} onChange={this.onChange} name="temp" type="number"/>
+                <TextField fullWidth floatingLabelText="Temperatura" hintText="Ejemplo: 25" value={this.state.form.temp} onChange={this.onChange} name="temp" type="number"/>
             </Col1>
         </Row>
     </form>

@@ -86,7 +86,7 @@ export const bankOfBatteryCapacity = (totalConsumeOfYear, {voltage, daysOfAutono
 export const qtyOfBatteries=(totalBankBattery, voltage, batteryCapacity, batteryVoltage)=>{
     let result = 0
     if(_.toNumber(totalBankBattery) && _.toNumber(voltage) && _.toNumber(batteryCapacity) && _.toNumber(batteryVoltage)){
-        result = ((_.toNumber(totalBankBattery) * _.toNumber(voltage))/(_.toNumber(batteryCapacity) * _.toNumber(batteryVoltage))).toFixed(2)
+        result = Math.round((_.toNumber(totalBankBattery) * _.toNumber(voltage))/(_.toNumber(batteryCapacity) * _.toNumber(batteryVoltage)))
     }
     return result
 }

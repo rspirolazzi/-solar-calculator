@@ -26,7 +26,7 @@ export default class DialogAddInverter extends Dialog {
     renderContentModal = ()=><form onSubmit={this.clickSubmit}>
         <Row>
             <Col4>
-                <TextField fullWidth floatingLabelText="Modelo" hintText="" value={this.state.form.name} onChange={this.onChange} name="name" type="text"/>
+                <TextField autoFocus fullWidth floatingLabelText="Modelo" hintText="" value={this.state.form.name} onChange={this.onChange} name="name" type="text"/>
             </Col4>
             <Col1>
                 <TextField fullWidth floatingLabelText="Corriente" hintText=""  value={this.state.form.power} onChange={this.onChange} name="power" type="number"/>

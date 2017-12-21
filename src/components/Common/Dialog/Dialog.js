@@ -16,10 +16,15 @@ export default class DialogSimple extends Component {
             open: false,
             form:this.initState(),
         }
+        this.getActions=this.getActions.bind(this)
     }
     initState = ()=>({})
     resetForm=() =>{
-        this.setState({form: this.initState()})
+        this.setState({form: this.initState()}, ()=>{
+            if(this.refs.name){
+                this.refs.name.focus()
+            }
+        })
     }
 
     clickClose=()=>{
@@ -44,8 +49,10 @@ export default class DialogSimple extends Component {
 
     clickSubmit=()=>{
         this.props.onAdd(this.state.form)
-        this.close()
         this.resetForm()
+    }
+    focusOnFirstElement=()=>{
+
     }
 
     getActions = ()=>[
@@ -54,9 +61,14 @@ export default class DialogSimple extends Component {
             onClick={this.clickClose}
         />,
         <FlatButton
-            label="Guardar"
+            label="Agregar"
             primary={true}
-            onClick={this.clickSubmit}
+            onClick={()=>{this.clickSubmit();}}
+        />,
+        <FlatButton
+            label="Agregar y salir"
+            secondary={true}
+            onClick={()=>{this.clickSubmit(); this.close()}}
         />,
     ]
 

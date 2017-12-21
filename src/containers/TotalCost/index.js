@@ -12,7 +12,7 @@ import {
     TableRowColumn,
     TableFooter,
 } from 'material-ui/Table'
-
+import {price as priceFormat} from '../../utils/format'
 class TotalCost extends Component {
     render() {
         const {inverter, solarPanel, battery} = this.props
@@ -33,30 +33,33 @@ class TotalCost extends Component {
                         <TableRowColumn>Paneles Solares</TableRowColumn>
                         <TableRowColumn>{panel.name}</TableRowColumn>
                         <TableRowColumn>{panel.qty}</TableRowColumn>
-                        <TableRowColumn>USD {panel.subtotal}</TableRowColumn>
+                        <TableRowColumn>{priceFormat(panel.subtotal)}</TableRowColumn>
                     </TableRow>)}
                     {battery.items.map(bat=><TableRow key={id++}>
                         <TableRowColumn>Banco de Baterías</TableRowColumn>
                         <TableRowColumn>{bat.name}</TableRowColumn>
                         <TableRowColumn>{battery.totalOfBattery.qty}</TableRowColumn>
-                        <TableRowColumn>USD {battery.totalOfBattery.qty*bat.price}</TableRowColumn>
+                        <TableRowColumn>{priceFormat(battery.totalOfBattery.qty*bat.price)}</TableRowColumn>
                     </TableRow>)}
                     {inverter.items.map(inv=><TableRow key={id++}>
                         <TableRowColumn>Regulador de carga</TableRowColumn>
                         <TableRowColumn>{inv.name}</TableRowColumn>
                         <TableRowColumn>{inv.qty}</TableRowColumn>
-                        <TableRowColumn>USD {inv.price}</TableRowColumn>
+                        <TableRowColumn>{priceFormat(inv.price)}</TableRowColumn>
                     </TableRow>)}
                     <TableRow>
                         <TableRowColumn>Inversor de corriente</TableRowColumn>
                         <TableRowColumn>{inverter.name}</TableRowColumn>
                         <TableRowColumn>1</TableRowColumn>
-                        <TableRowColumn>USD {inverter.price}</TableRowColumn>
+                        <TableRowColumn>{priceFormat(inverter.price)}</TableRowColumn>
                     </TableRow>
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TableRowColumn colSpan="4">USD {total}</TableRowColumn>
+                        <TableRowColumn></TableRowColumn>
+                        <TableRowColumn></TableRowColumn>
+                        <TableRowColumn></TableRowColumn>
+                        <TableRowColumn>{priceFormat(total)}</TableRowColumn>
                     </TableRow>
                 </TableFooter>
             </Table>

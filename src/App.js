@@ -18,6 +18,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {HashRouter} from 'react-router-dom'
+import {confirm} from './utils/confirm'
 
 // Font
 import 'typeface-roboto'
@@ -32,13 +33,25 @@ const muiTheme = getMuiTheme({
 injectTapEventPlugin()
 const {store, persistor} = configureStore()
 const onBeforeLift = ()=> {
-    console.log('onBeforeLift')
+    //console.log('onBeforeLift')
 }
 const clearData = (e)=> {
     e.preventDefault()
+    /*confirm('Are you sure', {muiTheme}).then(
+        (result) => {
+            // `proceed` callback
+            console.log('proceed called');
+            console.log(result);
+        },
+        (result) => {
+            // `cancel` callback
+            console.log('cancel called');
+            console.log(result)
+        }
+    )*/
     console.log('ClearData')
     persistor.purge(store)
-    window.location.reload()
+    window.location.href='/'
 }
 
 const MenuRight = (props) => (
@@ -48,7 +61,7 @@ const MenuRight = (props) => (
         targetOrigin={{horizontal: 'right', vertical: 'top'}}
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
     >
-        <MenuItem primaryText="Nuevo"/>
+        <MenuItem primaryText="Nuevo" onClick={clearData}/>
     </IconMenu>
 )
 
@@ -61,9 +74,6 @@ class App extends Component {
                         <div style={styles.bg}>
                             <AppBar title="Calculo de sistema Fotovoltaico (beta)" iconElementRight={<MenuRight/>}/>
                             <Layout styles={styles}/>
-                            <CreateNewButton onClick={clearData}>
-                                <NewIcon/>
-                            </CreateNewButton>
                         </div>
                     </HashRouter>
                 </PersistGate>
