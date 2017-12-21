@@ -15,9 +15,9 @@ class SolarPanel extends Component {
         }
     }
     render() {
-        const {solarPanel, consume:{isComplete}} = this.props;
+        const {solarPanel} = this.props;
         const {items} = solarPanel
-        return <LayoutCard show={isComplete} title="PANELES SOLARES SELECCIONADOS PARA LA INSTALACIÓN">
+        return <LayoutCard title="PANELES SOLARES SELECCIONADOS PARA LA INSTALACIÓN">
             <Subheader>Panel Solar</Subheader>
             <DialogAddPanel title="Agregar Panel Solar" labelDialog="Agregar un Panel Solar" onAdd={this.props.handleAdd}/>
             <InputTable items={items} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>

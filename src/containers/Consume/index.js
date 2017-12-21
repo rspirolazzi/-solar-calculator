@@ -15,8 +15,7 @@ import {addConsumeParam, removeConsumeParam} from '../../actions/consume'
 class Consume extends Component {
     render() {
         const {items, totals, power_factor, energy} = this.props.consume
-        const {isComplete} = this.props.geographic
-        return <LayoutCard show={isComplete} title="PARAMETROS DE CONSUMO Y ENERGÍA">
+        return <LayoutCard title="PARAMETROS DE CONSUMO Y ENERGÍA">
             <DialogAddConsume title="Agregar consumo" labelDialog="Agregar un consumo" onAdd={this.props.handleAdd}/>
             <InputTable items={items} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>
             <AdditionalsTable {...totals}/>

@@ -13,9 +13,8 @@ class Inverters extends Component {
     render() {
         const {inverter,battery, solarPanel, consume} = this.props;
         const {items} = inverter
-        const {isComplete} = battery
         
-        return <LayoutCard show={isComplete} title="DIMENSIONAMIENTO DEL REGULADOR DE CARGA E INVERSOR">
+        return <LayoutCard title="DIMENSIONAMIENTO DEL REGULADOR DE CARGA E INVERSOR">
             <InfoCharge value={getPowerOfChargeControllerPanel(battery.parallel,solarPanel.items)}/>
             <DialogAddInverter title="Agregar nu regulador de carga" labelDialog="Agregar un regulador" onAdd={this.props.handleAdd}/>
             <InvertersTable items={items} onClickAdd={(e,data)=>this.props.handleAdd(data)} onClickRemove={(e,id)=>this.props.handleRemove(id)}/>

@@ -6,6 +6,7 @@ import SolarPanel from '../SolarPanel'
 import Batteries from '../Batteries'
 import Inverters from '../Inverters'
 import TotalCost from '../TotalCost'
+import Report from '../Report'
 import SnackBar from '../Snackbar'
 
 import Home from '../../components/Home'
@@ -23,6 +24,7 @@ class Layout extends Component {
                 <Route path="/batteries" component={Batteries}/>
                 <Route path="/inverters" component={Inverters}/>
                 <Route path="/totalCost" component={TotalCost}/>
+                <Route path="/report" component={Report}/>
             </Switch>
             <SnackBar/>
         </div>

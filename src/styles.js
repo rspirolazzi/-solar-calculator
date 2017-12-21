@@ -3,7 +3,7 @@ const styles = {
     container: {
         textAlign: 'center',
         width:'80%',
-        margin:'0 auto',
+        margin:'60px auto',
     },
     bg:{
         backgroundColor:grey100

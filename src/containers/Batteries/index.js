@@ -16,10 +16,10 @@ class Batteries extends Component {
     render() {
         const {solarPanel} = this.props
         const {battery} = this.props
-        const {items, isComplete} = solarPanel
+        const {items} = solarPanel
         //const suggest = suggestVoltage(solarPanel.items)
         const {voltage, totalBankBattery,totalOfBattery}= battery
-        return <LayoutCard show={isComplete} title="DIMENSIONAMIENTO DEL ARREGLO DE PANELES Y BANCO DE BATERÍAS">
+        return <LayoutCard title="DIMENSIONAMIENTO DEL ARREGLO DE PANELES Y BANCO DE BATERÍAS">
             <PowerOfSolarPanels solarPanels={items}/>
             <ParamsOfVoltage selected={voltage} onClickSelect={this.props.selectVoltage}/>
             {voltage !== ''?<div>
